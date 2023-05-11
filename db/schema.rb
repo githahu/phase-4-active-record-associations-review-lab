@@ -13,15 +13,16 @@
 ActiveRecord::Schema.define(version: 2023_05_09_070320) do
 
   create_table "passengers", force: :cascade do |t|
+    t.integer "ride_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "rides", force: :cascade do |t|
+    t.integer "passenger_id"
+    t.integer "taxi_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "taxi_id", null: false
-    t.index ["taxi_id"], name: "index_rides_on_taxi_id"
   end
 
   create_table "taxis", force: :cascade do |t|
@@ -29,5 +30,4 @@ ActiveRecord::Schema.define(version: 2023_05_09_070320) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "rides", "taxis"
 end
